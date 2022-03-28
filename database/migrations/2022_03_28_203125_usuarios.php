@@ -18,7 +18,7 @@ class Usuarios extends Migration
             $table->id();
             $table->string('nombre');
             $table->string('password');
-            $table->boolean('tipo');
+            $table->integer('tipo');
         });
         
     }
@@ -31,6 +31,6 @@ class Usuarios extends Migration
     public function down()
     {
         //
-        Schema::dropIfExists('usuario');
+        Schema::dropIfExists('usuarios');
     }
 }

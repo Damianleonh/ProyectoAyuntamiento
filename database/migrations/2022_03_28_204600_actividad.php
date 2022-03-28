@@ -14,12 +14,12 @@ class Actividad extends Migration
     public function up()
     {
         //
-        Schema::create('actividad', function(Blueprint $table){
+        Schema::create('actividades', function(Blueprint $table){
             $table->id();
-            $table->foreignIdFor('programa_id');
+            $table->unsignedBigInteger('programa_id');
             $table->text('actividad');
             //$table->string('responsable');
-            $table->foreign('programa_id')->references('id')->on('programas')->onDelete('cascade');
+            $table->foreign('programa_id')->references('id')->on('programas');
         });
     }
 
@@ -31,5 +31,6 @@ class Actividad extends Migration
     public function down()
     {
         //
+        Schema::dropIfExists('actividades');
     }
 }

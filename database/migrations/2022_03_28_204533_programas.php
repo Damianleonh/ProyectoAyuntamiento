@@ -29,5 +29,6 @@ class Programas extends Migration
     public function down()
     {
         //
+        Schema::dropIfExists('programas');
     }
 }
