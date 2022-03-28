@@ -12,5 +12,6 @@
 
     putoooooooooooossssss
     proyecto 1 alvvvvv
+    <img src="textura_1.png" alt="Girl in a jacket" width="500" height="600">
 </body>
 </html>
