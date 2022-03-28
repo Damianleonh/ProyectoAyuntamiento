@@ -17,7 +17,9 @@ class Programas extends Migration
         Schema::create('programas', function(Blueprint $table){
             $table->id();
             $table->string('nombre');
+            $table->unsignedBigInteger('usuario_id');
             $table->dateTime('fecha');
+            $table->foreign('usuario_id')->references('id')->on('usuarios');
         });
     }
 
