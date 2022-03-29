@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProgramaController;
-
+use App\Models\Programa;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,4 +23,5 @@ Route::get('/programa', function () {
     return view('programas.index');
 });
 
-Route::get('programa/create',[ProgramaController::class,'create']);
+
+Route::resource('programa',ProgramaController::class);
