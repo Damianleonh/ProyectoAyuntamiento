@@ -5,7 +5,7 @@
 @section('contenido')
     <div class="col-xl-12">
         @csrf
-        <h2 align='center'>Formulario de creacion de programa</h2>
+        <h2 align='center'>Formulario de creacion de programas</h2>
         <form action="{{route('programa.store')}}" method="POST" align='center'>
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="form-group">
