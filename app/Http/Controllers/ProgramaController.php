@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Programa;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 class ProgramaController extends Controller
 {
     /**
@@ -12,9 +12,19 @@ class ProgramaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('programa.index');
+        $nombre = trim($request->get('nombre'));
+        //return view('programa.index');
+        //$programas = Programa::all();
+        $programas = DB::table('programas')->select('id','nombre','fecha')
+                        ->where('nombre', 'LIKE', '%'.$nombre.'%')
+                        ->orWhere('fecha', 'LIKE', '%'.$nombre.'%')
+                        ->orderBy('nombre', 'asc')
+                        ->paginate(10);
+        //dd( $programas);
+        //return $programas;
+        return view('programa.index', compact('programas', 'nombre'));
     }
 
     /**
@@ -36,6 +46,12 @@ class ProgramaController extends Controller
     public function store(Request $request)
     {
         //
+        $programa = new Programa;
+        $programa->nombre = $request->input('nombre_programa');
+        $programa->usuario_id = 1;
+        $programa->fecha = '2019-03-19 18:00:00';
+        $programa->save();
+        return redirect()->route('programa.index');
     }
 
     /**

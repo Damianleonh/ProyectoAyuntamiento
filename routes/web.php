@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProgramaController;
 use App\Models\Programa;
+use GuzzleHttp\Promise\Create;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,9 +20,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/programa', function () {
-    return view('programas.index');
-});
+// Route::get('/programa', function () {
+//     return view('programas.index');
+// });
 
+Route::resource('programa', ProgramaController::class);
 
-Route::resource('programa',ProgramaController::class);
+// Route::resource('/programa/create', [ProgramaController::class, 'create']);
