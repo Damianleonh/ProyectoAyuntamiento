@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Programa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use DateTime;
 class ProgramaController extends Controller
 {
     /**
@@ -46,10 +47,11 @@ class ProgramaController extends Controller
     public function store(Request $request)
     {
         //
+        $dt = new DateTime();
         $programa = new Programa;
         $programa->nombre = $request->input('nombre_programa');
         $programa->usuario_id = 1;
-        $programa->fecha = '2019-03-19 18:00:00';
+        $programa->fecha = $dt->format('Y-m-d H:i:s');
         $programa->save();
         return redirect()->route('programa.index');
     }
@@ -71,9 +73,12 @@ class ProgramaController extends Controller
      * @param  \App\Models\Programa  $programa
      * @return \Illuminate\Http\Response
      */
-    public function edit(Programa $programa)
+    public function edit($id)
     {
         //
+        $programa = Programa::findOrFail($id); //obtenemos los datos del programa
+        return view('programa.edit',compact('programa'));
+        //return $programa;
     }
 
     /**
@@ -83,19 +88,27 @@ class ProgramaController extends Controller
      * @param  \App\Models\Programa  $programa
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Programa $programa)
+    public function update(Request $request, $id)
     {
         //
+        $programa = Programa::findOrFail($id);
+        $programa->nombre = $request->input('nombre_programa');
+        $programa->save();
+        return redirect()->route('programa.index');
     }
 
     /**
      * Remove the specified resource from storage.
-     *
+     * @param int $id
      * @param  \App\Models\Programa  $programa
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Programa $programa)
+    public function destroy($id)
     {
         //
+        $programa = Programa::findOrFail($id);
+        // $programa->actividades()->deteach();
+        $programa->delete();
+        return redirect()->route('programa.index');
     }
 }
