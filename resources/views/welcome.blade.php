@@ -1,17 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 <body>
-    HOLA PUTOSS/
 
-
-    putoooooooooooossssss
-    proyecto 1 alvvvvv
-    <img src="textura_1.png" alt="Girl in a jacket" width="500" height="600">
+    <header id="head">
+        <img id="head-img" src="https://manzanillo.gob.mx/assets/img/escudo_de_armas.png">
+        <div id="link">
+            <a href="{{route('programa')}}">Inicio</a>
+            <a href="#">Cuenta</a>
+        </div>
+    </header>
+    
+    <p id="main-title">Sistema de inicio de sesión</p>
+    <div id="container">
+        <div id="main">
+            <img id="main-img" src="https://manzanillo.gob.mx/assets/img/escudo_de_armas.png">
+            <input id="main-mail" type="text" placeholder="Correo">
+            <input id="main-pwd" type="password" placeholder="Contraseña">
+            <button id="main-loginbtn">Iniciar sesión</button>
+        </div>
+    </div>
 </body>
 </html>
