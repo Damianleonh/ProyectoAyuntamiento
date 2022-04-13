@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Programas extends Migration
+class Relaciones extends Migration
 {
     /**
      * Run the migrations.
@@ -14,12 +14,14 @@ class Programas extends Migration
     public function up()
     {
         //
-        Schema::create('programas', function(Blueprint $table){
+        Schema::create('relaciones', function(Blueprint $table){
             $table->id();
-            $table->string('nombre');
-            $table->unsignedBigInteger('usuario_id');
-            $table->dateTime('fecha');
-            // $table->foreign('usuario_id')->references('id')->on('usuarios');
+            $table->unsignedBigInteger('programa_id');
+            $table->integer('id_usuario');
+            $table->integer('id_programas');
+            $table->integer('id_actividades');
+            //$table->string('responsable');
+            // $table->foreign('programa_id')->references('id')->on('programas');
         });
     }
 
@@ -31,6 +33,5 @@ class Programas extends Migration
     public function down()
     {
         //
-        Schema::dropIfExists('programas');
     }
 }

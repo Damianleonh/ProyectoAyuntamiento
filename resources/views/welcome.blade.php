@@ -8,9 +8,12 @@
 <body>
 
     <header id="head">
-        <img id="head-img" src="https://manzanillo.gob.mx/assets/img/escudo_de_armas.png">
+        <a href="{{route('programa.index')}}">
+            <img id="head-img" src="https://manzanillo.gob.mx/assets/img/escudo_de_armas.png">
+        </a>
+        
         <div id="link">
-            <a href="{{route('programa')}}">Inicio</a>
+            <a href="{{route('programa.index')}}">Inicio</a>
             <a href="#">Cuenta</a>
         </div>
     </header>
@@ -21,7 +24,9 @@
             <img id="main-img" src="https://manzanillo.gob.mx/assets/img/escudo_de_armas.png">
             <input id="main-mail" type="text" placeholder="Correo">
             <input id="main-pwd" type="password" placeholder="Contraseña">
-            <button id="main-loginbtn">Iniciar sesión</button>
+            <form action="{{route('programa.index')}}">
+                <button id="main-loginbtn">Iniciar sesión</button>            
+            </form>
         </div>
     </div>
 </body>

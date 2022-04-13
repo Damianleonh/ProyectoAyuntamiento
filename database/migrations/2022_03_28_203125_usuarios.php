@@ -19,6 +19,7 @@ class Usuarios extends Migration
             $table->string('nombre');
             $table->string('password');
             $table->integer('tipo');
+            $table->integer('activo');
         });
         
     }

@@ -18,8 +18,10 @@ class Actividad extends Migration
             $table->id();
             $table->unsignedBigInteger('programa_id');
             $table->text('actividad');
+            $table->text('descripcion');
+            $table->dateTime('fecha');
             //$table->string('responsable');
-            $table->foreign('programa_id')->references('id')->on('programas');
+            // $table->foreign('programa_id')->references('id')->on('programas');
         });
     }
 

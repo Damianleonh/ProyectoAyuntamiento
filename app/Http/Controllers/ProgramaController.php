@@ -50,7 +50,7 @@ class ProgramaController extends Controller
         $dt = new DateTime();
         $programa = new Programa;
         $programa->nombre = $request->input('nombre_programa');
-        $programa->usuario_id = 1;
+        $programa->usuario_id = 2;
         $programa->fecha = $dt->format('Y-m-d H:i:s');
         $programa->save();
         return redirect()->route('programa.index');
