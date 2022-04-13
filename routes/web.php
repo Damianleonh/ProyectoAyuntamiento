@@ -28,6 +28,11 @@ Route::get('/', function () {
 
 Route::resource('programa', ProgramaController::class);
 
+// Route::get('programa', ProgramaController::class)->names('actividad.index');
+
 Route::resource('actividad', ActividadController::class);
+
+Route::get('programa/actividades/{programa_id}', [ActividadController::class, 'actividadesPrueba'])->name('actividadesPrueba');
+Route::get('programa/actividades/{programa_id}/detalle', [ActividadController::class, 'detalleActividad'])->name('detalleActividad');
 
 // Route::resource('/programa/create', [ProgramaController::class, 'create']);

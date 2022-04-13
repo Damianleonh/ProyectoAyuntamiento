@@ -5,7 +5,7 @@
 @section('contenido')
 
     <div class="container">
-        <h2 align='center'>Gestión de Actividades del programa {{$programa_id}}</h2>
+        <h2 align='center'>Gestión de {{ $nombre->nombre }} del programa </h2>
         <div class="row">
             <div class="col-lx-12">
                 @csrf
@@ -22,7 +22,7 @@
                 </form>
             </div>   
             <div class="col-lx-12">
-                <div class="table-respon">
+                <div class="table-respon">dd
                     <table class="table table-striped">
                         <thead>
                             <tr>
@@ -45,9 +45,7 @@
                             @foreach ($actividades as $item)
                             <tr>
                                 <td><a href="{{route('actividad.edit',$item->id)}}" class="btn btn-warning btn-sm">Editar</a> 
-                                    {{-- <a href="{{route('actividad.destroy',$item->id)}}" class="btn btn-warning btn-sm">Borrar</a>  --}}
                                     
-                                    <!-- Button trigger modal -->
                                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="delete_modal_actividad_{{$item->id}}">
                                         Borrar
                                     </button>
@@ -57,9 +55,8 @@
                                 <td>{{$item->actividad}}</td>
                                 <td>{{$item->descripcion}}</td>
                                 <td>{{$item->fecha}}</td>
-                                <td><a href="#">Detalles</a></td>
+                                <td><a href="{{ route('detalleActividad', $item->id) }}">Detalles</a></td>
                             </tr>
-                            {{-- @include('actividad.delete') --}}
                             @endforeach
                             @endif
                         </tbody> --}}

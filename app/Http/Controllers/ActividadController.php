@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Actividad;
 use Illuminate\Http\Request;
-use App\Models\actividades;
+use App\Models\{actividades, Programa};
 use Illuminate\Support\Facades\DB;
 use DateTime;
 class ActividadController extends Controller
@@ -107,5 +107,27 @@ class ActividadController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function actividadesPrueba($programa_id){
+        // $actividades = DB::table('programas')
+        //                 ->join('actividades', 'programas.id', 'actividades.programa_id')
+        //                 ->select('actividades.*', 'programas.*', 'actividades.id AS actividad_id')
+        //                 ->where('actividades.programa_id', $programa_id)
+        //                 ->orderBy('actividad', 'asc')
+        //                 ->paginate(10);
+        $actividades = Actividades::where('programa_id', $programa_id)->paginate(10);
+        
+        $nombre = Programa::findOrFail($programa_id);
+
+        return view('actividad.index', compact('actividades', 'nombre'));        
+    }
+
+    public function detalleActividad($actividad_id)
+    {
+        $actividad = Actividades::findOrFail($actividad_id);
+        $actividad->programa = Programa::findOrFail($actividad->programa_id);
+
+        dd($actividad);
     }
 }

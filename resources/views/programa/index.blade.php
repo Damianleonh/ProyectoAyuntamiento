@@ -62,7 +62,7 @@
                                 <td>{{$item->id}}</td>
                                 <td>{{$item->nombre}}</td>
                                 <td>{{$item->fecha}}</td>
-                                <td><a href="{{route('actividad.index', ['programa_id' => $item->id] )}}">Actividades</a></td>
+                                <td><a href="{{route('actividadesPrueba', ['programa_id' => $item->id] )}}">Actividades</a></td>
                                 <td>Detalles</td>
                             </tr>
                             @include('programa.delete')
