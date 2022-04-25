@@ -31,6 +31,9 @@ Route::resource('programa', ProgramaController::class);
 Route::resource('actividad', ActividadController::class);
 // Route::resource('responsable', ResponsableController::class);
 
+Route::resource('responsable', ResponsableController::class);
+
+
 Route::get('programa/actividades/{programa_id}', [ActividadController::class, 'actividadesPrueba'])->name('actividadesPrueba');
 Route::get('programa/actividades/{programa_id}/detalles', [ActividadController::class, 'detalleActividad'])->name('detalleActividad');
 Route::get('programa/actividades/{programa_id}/crearActividad', [ActividadController::class, 'crearActividad'])->name('crearActividad');

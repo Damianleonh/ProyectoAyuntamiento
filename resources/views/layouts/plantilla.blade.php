@@ -54,8 +54,8 @@
         <img id="head-img" src="https://manzanillo.gob.mx/assets/img/escudo_de_armas.png">
 
         <div id="link">
-            <a href="#">Inicio</a>
-            <a href="{{redirect()->route('programa.index')}}">Programas</a>
+            <a href="{{route('programa.index')}}">Inicio</a>
+            <a href="{{route('programa.index')}}">Programas</a>
         </div>
     </header>
 

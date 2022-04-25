@@ -7,15 +7,17 @@
     <div class="col-xl-12">
         @csrf
         <h2 align='center'>Formulario de asignacion de responsable a la actividad {{$responsables->actividad}}</h2>
-        <form action="{{route('programa.store')}}" method="POST" align='center'>
+        <form action="{{route('responsable.store')}}" method="POST" align='center'>
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="form-group">
+                <input type="text" value="{{$responsables->id}}" name="actividad_id" hidden>
                 <label for="nombre_programa">Seleccione Departamento:</label>
                 {{-- <input name="nombre_programa" type="text" required><br> --}}
-                <select name="" id="">
-                        <option value="">1</option>
-                        <option value="">2</option>
-                        <option value="">3</option>
+                <select name="departamento" id="">
+                    <option value="">Seleccione departamento</option>
+                    @foreach ($departamentos as $departamento)
+                        <option value="{{ $departamento->departamentos }}">{!! $departamento->departamentos !!}</option>
+                    @endforeach
                 </select>  
             </div>
             {{-- <div class="form-group">
@@ -32,11 +34,5 @@
         </form>
     </div>
     {{-- <h4>{{$responsables[0]->departamento}}</h4> --}}
-    <select name="" id="">
-        <option value="">Seleccione</option>
-        @foreach ($departamentos as $departamento)
-            <option value="{{ $departamento->id }}">{!! $departamento->departamentos !!}</option>
-        @endforeach
-    </select>
     {{-- <h4>{!! $departamentos !!}</h4> --}}
 @endsection

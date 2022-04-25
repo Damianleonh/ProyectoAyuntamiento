@@ -33,9 +33,11 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @if (count($responsables)<=0)
                                 <tr>
                                     <td colspan="8">No hay resultados</td>
                                 </tr>
+                            @else
                                 @foreach ($responsables as $item)
                             <tr>
                                 {{-- <td><a href="{{route('responsable.edit',$item->id)}}" class="btn btn-warning btn-sm">Editar</a>  --}}
@@ -47,10 +49,12 @@
                                 </td>
                                  </td>
                                 <td>{{$item->id}}</td>
+                                <td>{{$item->actividad_id}}</td>
                                 <td>{{$item->responsable}}</td>
                                 <td>{{$item->fecha}}</td>
                             </tr>
                             @endforeach
+                            @endif
                         </tbody>
                     </table>
                 </div>
