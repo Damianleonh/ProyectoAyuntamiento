@@ -4,6 +4,7 @@
 <head>
     <title>Login</title>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="icon" href="https://manzanillo.gob.mx/assets/img/escudo_de_armas.png">
 </head>
 <body>
 
