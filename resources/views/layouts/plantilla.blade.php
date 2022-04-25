@@ -55,7 +55,7 @@
 
         <div id="link">
             <a href="#">Inicio</a>
-            <a href="#">Cuenta</a>
+            <a href="{{redirect()->route('programa.index')}}">Programas</a>
         </div>
     </header>
 

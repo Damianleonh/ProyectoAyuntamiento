@@ -17,12 +17,17 @@ class ActividadController extends Controller
     public function index(Request $request)
     {
         $actividad = trim($request->get('actividad'));
+        $programa_id = trim($request->get('programa_id'));
+        $nombre = Programa::findOrFail($programa_id);
+
         $actividades = DB::table('actividades')->select('id','programa_id','actividad','descripcion','fecha')
+                                    ->where('programa_id','=', $nombre->id)
                                     ->where('actividad', 'LIKE', '%'.$actividad . '%')
                                     ->orderBy('actividad', 'asc')
-                                    ->paginate(10);
-        // return $actividades;
-        return view('actividad.index', compact('actividades'));
+                                    ->paginate(100);
+        return view('actividad.index', compact('actividades', 'nombre'));
+
+        // dd($actividades);
     }
 
     /**
@@ -48,11 +53,11 @@ class ActividadController extends Controller
         $dt = new DateTime();
         $actividades = new Actividades;
         $actividades->actividad = $request->input('nombre_actividad');
-        $actividades->programa_id = 1;
+        $actividades->programa_id = $request->input('programa_id');;
         $actividades->descripcion = $request->input('descripcion');
         $actividades->fecha = $dt->format('Y-m-d H:i:s');
         $actividades->save();
-        return redirect()->route('actividad.index');
+        return redirect()->route('actividadesPrueba', $request->input('programa_id'));
 
     }
 
@@ -120,14 +125,25 @@ class ActividadController extends Controller
         
         $nombre = Programa::findOrFail($programa_id);
 
-        return view('actividad.index', compact('actividades', 'nombre'));        
+        return view('actividad.index', compact('actividades', 'nombre'));
+        // return $actividades;        
     }
 
-    public function detalleActividad($actividad_id)
+    public function detalleActividad($programa_id)
     {
-        $actividad = Actividades::findOrFail($actividad_id);
-        $actividad->programa = Programa::findOrFail($actividad->programa_id);
+        // $actividad = Actividades::findOrFail($actividad_id);
+        // $actividad->programa = Programa::findOrFail($actividad->programa_id);
+        $actividades = Actividades::where('programa_id', $programa_id)->paginate();
+        $programa = Programa::findOrFail($programa_id);
 
-        dd($actividad);
+        // dd($actividades);
+        // return $actividades;
+        return view('vistas.detalles', compact('actividades', 'programa'));
+    }
+
+    public function crearActividad($programa_id)
+    {
+        $programa = Programa::findOrFail($programa_id);
+        return view('actividad.create', compact('programa'));
     }
 }

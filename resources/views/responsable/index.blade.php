@@ -1,23 +1,22 @@
 @extends('layouts.plantilla')
 
-@section('titulo', 'Actividades')
+@section('titulo', 'Responsables')
 
 @section('contenido')
 
     <div class="container">
-        <h2 align='center'>Gestión de {{ $nombre->nombre }} del programa </h2>
+        <h2 align='center'>Gestión de Responsables de la actividad  {{$actividades->actividad}} del programa {{$programa->nombre}}</h2>
         <div class="row">
             <div class="col-lx-12">
                 @csrf
                 <form action="{{route('actividad.index')}}" method="GET">
                     <div class="form-row">
                         <div class="col-sm-4 my-1">
-                            <input type="text" class="form-control" name="actividad"  placeholder="Nombre de la actividad">
-                            <input type="text" value="{{$nombre->id}}" name="programa_id" hidden>
+                            <input type="text" class="form-control" name="actividad"  placeholder="Nombre del responsable">
                         </div>
                         <div class="col-auto my-1">
                             <input type="submit" class="btn btn-primary" value="Buscar">
-                            <a href="{{route('crearActividad', $nombre->id)}}" class="btn btn-success">Nuevo</a>
+                            <a href="{{route('crearResponsable', $actividades->id)}}" class="btn btn-success">Nuevo</a>
                         </div>
                     </div>
                 </form>
@@ -29,39 +28,29 @@
                             <tr>
                                 <th>Opciones</th>
                                 <th>ID</th>
-                                <th>Id del programa</th>
-                                <th>Nombre</th>
-                                <th>Responsables</th>
-                                <th>Descripcion</th>
+                                <th>Departamento</th>
                                 <th>Fecha</th>
-                                <th>Detalles</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @if (count($actividades)<=0)
                                 <tr>
                                     <td colspan="8">No hay resultados</td>
                                 </tr>
-                                
-                            @else
-                            @foreach ($actividades as $item)
+                                @foreach ($responsables as $item)
                             <tr>
-                                <td><a href="{{route('actividad.edit',$nombre->id)}}" class="btn btn-warning btn-sm">Editar</a> 
-                                    
-                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="delete_modal_actividad_{{$item->id}}">
-                                        Borrar
-                                    </button>
+                                {{-- <td><a href="{{route('responsable.edit',$item->id)}}" class="btn btn-warning btn-sm">Editar</a>  --}}
+                                    {{-- <form action="{{route('programa.destroy',$item->id)}}" method="POST "> --}}
+                                        @csrf
+                                        @method('DELETE')
+                                        {{-- <input type="submit" class="btn btn-danger btn-sm" value="Borrar"> --}}
+                                    {{-- </form> --}}
+                                </td>
                                  </td>
                                 <td>{{$item->id}}</td>
-                                <td>{{$item->programa_id}}</td>
-                                <td>{{$item->actividad}}</td>
-                                <td><a href="{{route('responsablesVista', [$item->id])}}">Responsables</a></td>
-                                <td>{{$item->descripcion}}</td>
+                                <td>{{$item->responsable}}</td>
                                 <td>{{$item->fecha}}</td>
-                                <td><a href="{{ route('detalleActividad', $nombre->id) }}">Detalles</a></td>
                             </tr>
                             @endforeach
-                            @endif
                         </tbody>
                     </table>
                 </div>
